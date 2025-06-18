@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/bookings")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://stayfinderrr.netlify.app")
 public class BookingController {
 
     private final BookingService bookingService;

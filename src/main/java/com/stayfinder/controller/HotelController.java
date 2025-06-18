@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/hotels")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://stayfinderrr.netlify.app")
 public class HotelController {
 
     @Autowired
