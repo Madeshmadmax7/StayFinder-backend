@@ -24,13 +24,15 @@ public class AppUserController {
 
     @PostMapping
     public ResponseEntity<?> createUser(@RequestBody AppUser user) {
-        try {
-            AppUser savedUser = appUserService.saveUser(user);
-            return ResponseEntity.ok(savedUser);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to create user");
+        Optional<AppUser> existing = appUserService.findByEmail(user.getEmail());
+        if (existing.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already registered");
         }
+        AppUser savedUser = appUserService.saveUser(user);
+        return ResponseEntity.ok(savedUser);
     }
+
+
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> loginData) {
